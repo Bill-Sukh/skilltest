@@ -1,23 +1,154 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
     <title>WHCC Hacker News Reader</title>
-    <script type="text/javascript">
-        function getStories() {
-            fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
-                .then((response) => {
-                    return response.json();
-                })
-                .then((myJson) => {
-                    document.getElementById("stories").innerHTML = myJson;
-                });
-        }
-        getStories();
-    </script>
 </head>
 <body>
-    <h1>WHCC Hacker News Reader</h1>
-    <div id="stories"></div>
+    <header class="header">
+        <div class="socials header-top">
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+        <div class="header-mid">
+            <div class="logo">
+                <img src="img/logo.png" alt="">
+            </div>
+
+        </div>
+        <div class="header-bottom">
+            <ul class="navbar">
+                <li class="nav-item">
+                    <a href="#"><span><i class="fa-solid fa-house-chimney"></i></span>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#"><span><i class="fa-solid fa-envelope"></i></span>Newsletter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#"> <span><i class="fa-solid fa-cart-shopping"></i></span> Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="news-section">
+        <ul class="articles">
+            <li class="article-item">
+                <div class="article-img">
+                    <img src="img/img-1.jpg" alt="">
+                </div>  
+                
+                <div class="article-details">
+                    <h1 class="article-title"> <a href="#">Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet</a> </h1>
+                    <div class="article-date-author">
+                        <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> March 18,2022</p>
+                        <p class="author"> <span><i class="fa-solid fa-user"></i></span> Rajiv Kureshi</p>
+                    </div>
+                    <p class="article-excerpt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, totam! Obcaecati autem repudiandae excepturi unde provident quae minus voluptatibus eius, rerum ipsa, aut odio placeat, explicabo repellat saepe. Tenetur, a?</p>
+                </div>  
+
+                <div class="article-more-button">
+                    <a href="#">See more <span><i class="fa-solid fa-angle-right"></i></span> </a>
+                </div>
+            </li>
+            <li class="article-item">
+                <div class="article-img">
+                    <img src="img/img-1.jpg" alt="">
+                </div>  
+                
+                <div class="article-details">
+                    <h1 class="article-title"> <a href="#">Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet</a> </h1>
+                    <div class="article-date-author">
+                        <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> March 18,2022</p>
+                        <p class="author"> <span><i class="fa-solid fa-user"></i></span> Rajiv Kureshi</p>
+                    </div>
+                    <p class="article-excerpt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, totam! Obcaecati autem repudiandae excepturi unde provident quae minus voluptatibus eius, rerum ipsa, aut odio placeat, explicabo repellat saepe. Tenetur, a?</p>
+                </div>  
+
+                <div class="article-more-button">
+                    <a href="#">See more <span><i class="fa-solid fa-angle-right"></i></span> </a>
+                </div>
+            </li>
+            <li class="article-item">
+                <div class="article-img">
+                    <img src="img/img-1.jpg" alt="">
+                </div>  
+                
+                <div class="article-details">
+                    <h1 class="article-title"> <a href="#">Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet</a> </h1>
+                    <div class="article-date-author">
+                        <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> March 18,2022</p>
+                        <p class="author"> <span><i class="fa-solid fa-user"></i></span> Rajiv Kureshi</p>
+                    </div>
+                    <p class="article-excerpt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, totam! Obcaecati autem repudiandae excepturi unde provident quae minus voluptatibus eius, rerum ipsa, aut odio placeat, explicabo repellat saepe. Tenetur, a?</p>
+                </div>  
+
+                <div class="article-more-button">
+                    <a href="#">See more <span><i class="fa-solid fa-angle-right"></i></span> </a>
+                </div>
+            </li>
+            <li class="article-item">
+                <div class="article-img">
+                    <img src="img/img-2.jpg" alt="">
+                </div>  
+                
+                <div class="right"> 
+                    <div class="article-details">
+                        <h1 class="article-title"> <a href="#">Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet</a> </h1>
+                        <div class="article-date-author">
+                            <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> March 18,2022</p>
+                            <p class="author"> <span><i class="fa-solid fa-user"></i></span> Rajiv Kureshi</p>
+                        </div>
+                        <p class="article-excerpt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, totam! Obcaecati autem repudiandae excepturi unde provident quae minus voluptatibus eius, rerum ipsa, aut odio placeat, explicabo repellat saepe. Tenetur, a?</p>
+                    </div>  
+    
+                    <div class="article-more-button">
+                        <a href="#">See more <span><i class="fa-solid fa-angle-right"></i></span> </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!-- <aside>
+        <div class=""></div>
+    </aside> -->
+    <!-- <footer>
+        <div class="left">  
+            <div class="footer-menu">
+                <div class="support">
+                    <p class="support-menu-title">Support</p>
+                    <ul class="support-menu-items">
+                        <li>Help Center</li>
+                        <li>Contact Us</li>
+                        <li>FAQ</li>
+                        <li>Donation</li>
+                    </ul>
+                </div>
+                <div class="about-us">
+                    <p class="about-menu-title">About</p>
+                    <ul class="about-menu-items">
+                        <li>About us</li>
+                        <li>Events</li>
+                        <li>Careers</li>
+                        <li>Advertising</li>
+                    </ul>
+                </div>
+                <div class="deals">
+                    <p class="deals-menu-title">Deals</p>
+                    <ul class="deals-menu-items">
+                        <li>Exclusives</li>
+                        <li>Hacking</li>
+                        <li>Development</li>
+                        <li>Android</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right"></div>
+    </footer> -->
+    <script src="js/main.js"></script>
 </body>
 </html>
