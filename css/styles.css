@@ -43,7 +43,11 @@ html{
 
 .header{
     width: 100%;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
+}
+
+.header .header-bottom .selected{
+    border-bottom: .1rem solid var(--main-color-blue);
 }
 
 .header .socials{
@@ -124,7 +128,7 @@ html{
 
 .news-section{
     width: 100%;
-    padding: 0rem 0.2rem;
+    padding: 0rem 1.8rem;
 }
 
 .news-section .articles{
@@ -133,82 +137,43 @@ html{
 
 .news-section .articles .article-item{
     margin-bottom: 3rem;
-}
-.news-section .articles .article-item .article-img{
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: lighter;
+    border-bottom: .1rem solid rgba(128, 128, 128, 0.336);
 }
 
-.news-section .articles .article-item .article-details{
-    padding: 0rem 1.2rem;
+.news-section .articles .article-item > *{
+    margin-bottom: 1.2rem;
 }
-
-.news-section .articles .article-item .article-details > *{
-    margin-bottom: 1.6rem;
+.news-section .articles .article-item a{
+    color: black;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
 }
-.news-section .articles .article-item .article-details .article-title{
-    margin-bottom: 2rem;
-}
-.news-section .articles .article-item .article-details .article-title a{
-    color: rgba(34, 34, 34, 0.925);
-    font-size: 1.8rem;
-}
-
-.news-section .articles .article-item .article-details .article-title:hover a{
-    text-decoration: underline;
-}
-
-.news-section .articles .article-item .article-details .article-date-author{
-    color: #404040e7;
+.news-section .articles .article-item .article-date-author{
+    padding-left: 1.5rem;
     display: flex;
-    font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color:rgba(0, 0, 0, 0.842)
 }
 
-.news-section .articles .article-item .article-details .article-date-author span{
-    margin-right: 0.2rem;
+.news-section .articles .article-item .article-title span{
+    color:rgba(0, 0, 0, 0.692);
 }
-.news-section .articles .article-item .article-details .article-excerpt{
-    color: rgb(102, 102, 102);
-    font-size: 1.1rem;
+.news-section .articles .article-item .article-date-author i{
+    font-size: 1rem;
+    color: #0074d2c7;
+    margin-right: 0.4rem;
 }
-.news-section .articles .article-item .article-details .article-date-author .date{
+
+.news-section .articles .article-item .article-date-author .date{
     margin-right: 2rem;
 }
-
-.news-section .articles .article-item .article-more-button{
-    width: 10rem;
-    border: 0.1rem solid #c9c9c9;
-    display: flex;
-    justify-content: center;
-    padding: 0.3rem 0;
-    margin-left: 1.2rem;
-}
-
 .news-section .articles .article-item .article-more-button:hover{
     background-color: var(--house-logo-left-roof);
     border: 0.1rem solid transparent;;
 }
 
-.news-section .articles .article-item .article-more-button a{
-    color: #777;
-    text-transform: uppercase;
-}
-
-.news-section .articles .article-item .article-more-button:hover a{
-    color: white;
-}
-
-.news-section .articles .article-item .article-more-button:hover i{
-    color: white;
-}
-
-.news-section .articles .article-item .article-more-button a span{
-    margin-left: 0.5rem;
-    color: black;
-    font-weight: bold;
-}
 
 @media (min-width: 580px) { 
     .header .header-mid {
@@ -226,19 +191,6 @@ html{
     .news-section .articles{
         width: 80%;
     }
-    .news-section .articles .article-item{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-    .news-section .articles .article-item .article-details .article-title a{
-        font-size: 2.4rem;
-    }
-    .news-section .articles .article-item .article-details .article-date-author{
-        font-size: 1.3rem;
-    }
-    .news-section .articles .article-item .article-details .article-excerpt{
-        font-size: 1.2rem;
-    }
 
     .header .header-bottom .navbar{
         font-size: 1.6rem;
@@ -248,6 +200,11 @@ html{
 }
 
 @media (min-width: 800px){
+    .header{
+        width: 100%;
+        margin-bottom: 6rem;
+    }
+    
     .header .header-bottom .navbar .nav-item i{
         display: none;
     }
