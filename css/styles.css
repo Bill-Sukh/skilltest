@@ -146,9 +146,21 @@ html{
     margin-bottom: 1.2rem;
 }
 .news-section .articles .article-item a{
-    color: black;
+    color: rgb(80, 80, 80);
     font-size: 1.5rem;
+    font-weight: 400;
     letter-spacing: 0.1rem;
+    transition: all .3s ease-in-out;
+}
+
+.news-section .articles .article-item a:hover {
+    color: var(--house-logo-left-roof);
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.news-section .articles .article-item .article-title{
+    margin-bottom: 1.5rem;
 }
 .news-section .articles .article-item .article-date-author{
     padding-left: 1.5rem;
@@ -162,7 +174,7 @@ html{
 }
 .news-section .articles .article-item .article-date-author i{
     font-size: 1rem;
-    color: #0074d2c7;
+    color: #141414;
     margin-right: 0.4rem;
 }
 
@@ -174,8 +186,8 @@ html{
     border: 0.1rem solid transparent;;
 }
 
-
 @media (min-width: 580px) { 
+    
     .header .header-mid {
         padding-top: 2.5rem;
         padding-bottom: 2.7rem;
@@ -196,6 +208,13 @@ html{
         font-size: 1.6rem;
         font-weight: lighter;
         text-transform: capitalize;
+    }
+    .news-section{
+        display: flex;
+        justify-content: center;
+    }
+    .news-section .articles{
+        width: 80%;
     }
 }
 

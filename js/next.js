@@ -1,59 +1,84 @@
-let baseUrl = 'https://hacker-news.firebaseio.com/v0/';
-let storyIDs = [];
-let story = {};
-let stories = [];
+const container = document.querySelector('.articles');
+const baseUrl = 'https://hacker-news.firebaseio.com/v0/';
+const MAX_STORIES = 500;
+const STORY_INCREMENT = 15;
+let storiesID = [];
+let count = 0;
+let currentID = 0;
 
-async function init(){
-    storyIDs = await getNewStoriesID();
-    stories = await getStories();
-
-    console.log(JSON.stringify(storyIDs));
-    console.log(JSON.stringify(stories));
-    renderStories(stories);
-
-}
 
 async function getNewStoriesID() {
-    // URL Format: 'https://hacker-news.firebaseio.com/v0/item/30749747.json';
-    let url = baseUrl + 'newstories.json';
-    try {
-        let res = await fetch(url);
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-    }
+  // URL Format: 'https://hacker-news.firebaseio.com/v0/item/30749747.json';
+  let url = baseUrl + 'newstories.json';
+  try {
+      let res = await fetch(url);
+      return await res.json();
+  } catch (error) {
+      console.log(error);
+  }
 }
 
 async function getStory(id){
-    let url = baseUrl + 'item/' + id + '.json';
-    try {
-        let res = await fetch(url);
-        return await res.json();
-    } catch (error) {
-        console.log(error);
-    }
+  let url = baseUrl + 'item/' + String(id) + '.json';
+  try {
+      let res = await fetch(url);
+      console.log('story fetched');
+      return await res.json();
+  } catch (error) {
+      console.log(error);
+  }
 
 }
 
-async function getStories(){
+const renderStory = (story) => {
+  return  `<div class="right"> 
+              <div class="article-details">
+                  <p class="article-title"><a href="${story.url}">${story.title}</a> </p>
+                  <div class="article-date-author">
+                      <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> ${time_ago(convertUnixTime(story.time))}</p>
+                      <p class="author"> <span><i class="fa-solid fa-user"></i></span>${story.by}</p>
+                  </div>
+              </div>  
+      </div>`;
+}
 
-    try {
-        await Promise.all(storyIDs.map(async (story) => {
-            try{
-                let item = await getStory(story);
-                stories.push(item);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }));
-        return stories;
+//Async function that sends requests to passed array of IDS
+async function getStories(stories){
+  let filteredStories = await stories;
+  console.log(filteredStories);
+  try {
+      await Promise.all(filteredStories.map(async (story) => {
+          try{
+              let storyItem = await getStory(story);
+              console.log("story id " + story);
+              let li = document.createElement("li");
+              li.className = 'article-item';
+              li.innerHTML = renderStory(storyItem);
+              container.appendChild(li);
+              count++;
+              console.log(count);
+          }
+          catch (error) {
+              console.log(error);
+          }
+      }));
+  } catch (error) {
+      console.log(error);
+  }
+}
 
-    } catch (error) {
-        console.log(error);
-    }
+async function sliceStoriesID(stories){
+  if(stories.length > 20){
+    console.log("sliceStoriesID function just received ALL IDS")
+  }
 
-   
+  let slicedStoriesID = [];
+  for (let i = 0; i < STORY_INCREMENT; i++) {
+    slicedStoriesID.push(stories[currentID]);
+    currentID++;
+  }
+  console.log("running");
+  return slicedStoriesID;
 }
 
 function time_ago(time) {
@@ -111,42 +136,34 @@ function time_ago(time) {
     return time;
 }
   
-
-
 function convertUnixTime(unixTime){
     let convertedDate = new Date(unixTime*1000);
 
     return convertedDate;
 }
 
-function renderStories(stories) {
-    let html = '';
-    try {
-        for (story of stories) {
-            let htmlComponent = `<div class="right"> 
-                    <div class="article-details">
-                        <h1 class="article-title"> <a href="${story.url}">${story.title}</a> </h1>
-                        <div class="article-date-author">
-                            <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> ${time_ago(convertUnixTime(story.time))}</p>
-                            <p class="author"> <span><i class="fa-solid fa-user"></i></span>${story.by}</p>
-                        </div>
-                    </div>  
-            </div>`;
-    
-            html += htmlComponent;
-        }
-    } catch (error) {
-        console.log(error);
-    }
-    let container = document.querySelector('.articles');
-    container.innerHTML = html;
-   
-}
 
-document.addEventListener("readystatechange", (event) => {
-    if (event.target.readyState === "complete") {
-        init();
-    }   
+window.addEventListener('scroll',()=>{
+
 });
 
 
+window.onload = async function() {
+    storiesID = await getNewStoriesID();
+    getStories(await sliceStoriesID(await storiesID));
+};
+
+window.addEventListener('scroll', async () => {
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+    } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 5 && (currentID % 15) == 0) {
+        getStories(await sliceStoriesID(storiesID));
+    }
+  }, 
+  {
+    passive: true
+});
