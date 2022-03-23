@@ -1,9 +1,20 @@
 let baseUrl = 'https://hacker-news.firebaseio.com/v0/';
+let storyIDs = [];
+let story = {};
+let stories = [];
 
-let filesAdded = ''; 
+async function init(){
+    storyIDs = await getNewStoriesID();
+    stories = await getStories();
+
+    console.log(JSON.stringify(storyIDs));
+    console.log(JSON.stringify(stories));
+    renderStories(stories);
+
+}
 
 async function getNewStoriesID() {
-    // let url = 'https://hacker-news.firebaseio.com/v0/item/30749747.json';
+    // URL Format: 'https://hacker-news.firebaseio.com/v0/item/30749747.json';
     let url = baseUrl + 'newstories.json';
     try {
         let res = await fetch(url);
@@ -24,22 +35,19 @@ async function getStory(id){
 
 }
 
-async function loadNewStories(){
-    let loadedStories = [];
+async function getStories(){
 
     try {
-        let stories = await getNewStoriesID();
-        console.log(stories);
-        await Promise.all(stories.map(async (story) => {
+        await Promise.all(storyIDs.map(async (story) => {
             try{
                 let item = await getStory(story);
-                loadedStories.push(item);
+                stories.push(item);
             }
             catch (error) {
                 console.log(error);
             }
         }));
-        return loadedStories;
+        return stories;
 
     } catch (error) {
         console.log(error);
@@ -111,11 +119,9 @@ function convertUnixTime(unixTime){
     return convertedDate;
 }
 
-async function renderStories(loadCSS) {
+function renderStories(stories) {
+    let html = '';
     try {
-        let stories = await loadNewStories();
-        let html = '';
-
         for (story of stories) {
             let htmlComponent = `<div class="right"> 
                     <div class="article-details">
@@ -129,63 +135,18 @@ async function renderStories(loadCSS) {
     
             html += htmlComponent;
         }
-        
-        return await html;
     } catch (error) {
         console.log(error);
     }
+    let container = document.querySelector('.articles');
+    container.innerHTML = html;
    
-}
-
-// async function renderStories(loadCSS) {
-//     try {
-//         let stories = await loadNewStories();
-//         let html = '';
-
-//         for (story of stories) {
-//             let htmlComponent = `<div class="right"> 
-//                     <div class="article-details">
-//                         <h1 class="article-title"> <a href="${story.url}">${story.title}</a> </h1>
-//                         <div class="article-date-author">
-//                             <p class="date"> <span><i class="fa-solid fa-calendar-days"></i></span> ${time_ago(convertUnixTime(story.time))}</p>
-//                             <p class="author"> <span><i class="fa-solid fa-user"></i></span>${story.by}</p>
-//                         </div>
-//                     </div>  
-//             </div>`;
-    
-//             html += htmlComponent;
-//         }
-    
-//         let container = document.querySelector('.articles');
-//         container.innerHTML = html;
-//     } catch (error) {
-//         console.log(error);
-//     }
-   
-// }
-
-async function loadCSS() { 
-    
-    const response = await renderStories();
-
-    if(filesAdded.indexOf('news.css') !== -1)
-        return
-  
-    let head = document.getElementsByTagName('head')[0]
-      
-    // Creating link element
-    let style = document.createElement('link') 
-    style.href = 'css/news.css'
-    style.rel = 'stylesheet'
-    head.append(style);
-      
-    // Adding the name of the file to keep record
-    filesAdded += ' news.css';
 }
 
 document.addEventListener("readystatechange", (event) => {
     if (event.target.readyState === "complete") {
-        
+        init();
     }   
 });
+
 
