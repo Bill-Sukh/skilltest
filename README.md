@@ -27,6 +27,19 @@ Try to timebox your work to approximately 1-2 hours.
 
 # Discussion Notes
 1. What decisions did you make before you began development?
-1. How did you decide what to work on in order to meet the time constraint?
-1. What was your decision making process for your code organization?
-1. If you had more time, what would you have implemented?
+    - Design(UI) decisions: 
+        1. Added navigation bar.
+        2. Added, modified WHCC logo.
+        3. Made the app responsive to small viewports. 
+        4. Colored elements with monochromatic color. 
+        5. To emphasize news that client is currently focused on, I added hover animation. 
+    - API call and data display decision    
+        1. After getting all news IDs from first API call, I filtered the initial 15 news. And as the user scroll down, app fetches next 15 news if following two conditions is met:
+           if client scrolled to the bottom of the page and total number of currently rendered news are divisible by 15.  
+        2. API calls to fetch the news are sent parralel instead of sequential. That way, it loads more faster. 
+2. How did you decide what to work on in order to meet the time constraint?
+    - Time boxed my work in 1 hour a day. 
+3. What was your decision making process for your code organization?
+    - For simplicity, I bundled all scripts into one file. 
+4. If you had more time, what would you have implemented?
+    - I would have added comment section to it. 

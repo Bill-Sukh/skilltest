@@ -27,7 +27,6 @@ async function getStory(id){
   } catch (error) {
       console.log(error);
   }
-
 }
 
 const renderStory = (story) => {
@@ -42,7 +41,6 @@ const renderStory = (story) => {
       </div>`;
 }
 
-//Async function that sends requests to passed array of IDS
 async function getStories(stories){
   let filteredStories = await stories;
   console.log(filteredStories);
@@ -68,10 +66,6 @@ async function getStories(stories){
 }
 
 async function sliceStoriesID(stories){
-  if(stories.length > 20){
-    console.log("sliceStoriesID function just received ALL IDS")
-  }
-
   let slicedStoriesID = [];
   for (let i = 0; i < STORY_INCREMENT; i++) {
     slicedStoriesID.push(stories[currentID]);
@@ -141,11 +135,6 @@ function convertUnixTime(unixTime){
 
     return convertedDate;
 }
-
-
-window.addEventListener('scroll',()=>{
-
-});
 
 
 window.onload = async function() {
